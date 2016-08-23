@@ -8,8 +8,8 @@ android {
         applicationId "com.aituling.testuipickview"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile project(':uipickview')
+    compile 'io.github.openfeign:feign-gson:9.3.0'
 }

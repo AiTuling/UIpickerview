@@ -1,7 +1,7 @@
 package com.aituling.uipickview.adpter;
 
 /**
- * 纯数字类的适配，用于连续的数字区间选择
+ *  * 纯数字类的适配，用于连续的数字区间选择
  * Created by Andy on 2016/8/20.
  */
 public class NumericWheelAdapter implements WheelAdapter {

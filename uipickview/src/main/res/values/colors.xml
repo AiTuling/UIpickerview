@@ -6,7 +6,7 @@
     <color name="pickerview_topbar_title">#333333</color>
     <color name="pickerview_wheelview_textcolor_out">#999999</color>
     <color name="pickerview_wheelview_textcolor_center">#FF45C4D4</color>
-    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <color name="pickerview_wheelview_textcolor_divider">#FF45C4D4</color>
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
 

@@ -29,16 +29,16 @@
         android:id="@+id/SJbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="pickviewOnclick"
         android:layout_toRightOf="@id/YMDbutton"
+        android:onClick="pickviewOnclick"
         android:text="时间时分"/>
 
     <Button
         android:id="@+id/MDTimebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="pickviewOnclick"
         android:layout_toRightOf="@id/SJbutton"
+        android:onClick="pickviewOnclick"
         android:text="月日时分"/>
 
     <TextView
@@ -47,4 +47,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ALLbutton"
         android:text="选择结果："/>
+
+    <Button
+        android:id="@+id/Optinsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/SJbutton"
+        android:onClick="pickviewOnclick"
+        android:text="地区选择"/>
 </RelativeLayout>

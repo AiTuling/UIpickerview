@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
@@ -7,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -23,3 +24,50 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
 }
+
+group = 'com.aituling.uipickview'// library库包名
+version = '1.0.2'// 版本号
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+
+task generateJavadocs(type: Javadoc) {
+    options.encoding = 'UTF-8'
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath()
+            .join(File.pathSeparator)) //使用android.getBootClasspath关联Android SDK类文件
+}
+
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+generateJavadocsJar.dependsOn generateJavadocs
+
+artifacts {
+    archives generateJavadocsJar //原文为generateJavaDocsJar，此处已做矫正，要严格显示大小写
+    archives generateSourcesJar
+}
+
+bintray {
+    user = 'aituling' //在个人中心的路径里可以找到
+    key = '964f46efd0cc760f6c99ea2c7cd9c5e79857fc1d' //上述保存的API key
+    pkg {
+        repo = 'maven' //必须设定一个值，这里选择maven
+        name = 'UI-UIPickView' //必须，包名
+        version {
+            name = '1.0.2' //版本名称
+            desc = 'add options selection' //版本描述
+            vcsTag = '1.0.2' //版本
+        }
+        licenses = ['Apache-2.0'] //开源协议
+        vcsUrl = 'https://github.com/AiTuling/UIpickerview.git' //指定项目git地址
+        websiteUrl = 'https://github.com/AiTuling/UIpickerview' //项目官网地址
+    }
+    configurations = ['archives'] //必须为archives
+}
+

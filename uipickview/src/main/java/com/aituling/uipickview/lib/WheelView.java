@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -253,9 +254,13 @@ public class WheelView extends View {
      * @param cyclic 是否循环
      */
     public final void setCyclic(boolean cyclic) {
+
         isLoop = cyclic;
     }
 
+    /**
+     * @param size 滚动的文字大小
+     */
     public final void setTextSize(float size) {
         if (size > 0.0F && !customTextSize) {
             textSize = (int) (context.getResources().getDisplayMetrics().density * size);
@@ -263,6 +268,49 @@ public class WheelView extends View {
             paintCenterText.setTextSize(textSize);
         }
     }
+
+    /**
+     * 设置未选择的颜色
+     *
+     * @param outerTextColor
+     */
+    public final void setPaintOuterTextColor(int outerTextColor) {
+        textColorOut = outerTextColor;
+        paintCenterText.setColor(textColorCenter);
+    }
+
+    /**
+     * 设置选中文字颜色
+     *
+     * @param centerTextColor
+     */
+    public final void setPaintCenterTextColor(int centerTextColor) {
+        textColorCenter = centerTextColor;
+        paintCenterText.setColor(centerTextColor);
+    }
+
+    /**
+     * 线条颜色值
+     *
+     * @param paintIndicatorColor
+     */
+    public final void setPaintIndicatorColor(int paintIndicatorColor) {
+        paintIndicatorColor = paintIndicatorColor;
+        paintIndicator.setColor(paintIndicatorColor);
+    }
+
+    /**
+     * @param textColorOut
+     * @param textColorCenter
+     * @param paintIndicatorColor
+     */
+    public final void setWheelViewColor(int textColorOut, int textColorCenter, int paintIndicatorColor) {
+        setPaintOuterTextColor(textColorOut);
+        setPaintCenterTextColor(textColorCenter);
+        setPaintIndicatorColor(paintIndicatorColor);
+
+    }
+
 
     public final void setCurrentItem(int currentItem) {
         this.initPosition = currentItem;
@@ -370,10 +418,7 @@ public class WheelView extends View {
             if (angle >= 90F || angle <= -90F) {
                 canvas.restore();
             } else {
-
-
                 String contentText = getContentText(visibles[counter]);
-
                 //计算开始绘制的位置
                 measuredCenterContentStart(contentText);
                 measuredOutContentStart(contentText);
