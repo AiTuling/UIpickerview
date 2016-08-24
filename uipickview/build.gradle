@@ -53,9 +53,12 @@ artifacts {
     archives generateSourcesJar
 }
 
+Properties properties = new Properties()
+// 加载本地配置
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
-    user = 'aituling' //在个人中心的路径里可以找到
-    key = '964f46efd0cc760f6c99ea2c7cd9c5e79857fc1d' //上述保存的API key
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
     pkg {
         repo = 'maven' //必须设定一个值，这里选择maven
         name = 'UI-UIPickView' //必须，包名
